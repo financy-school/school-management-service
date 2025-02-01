@@ -1,5 +1,10 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Attendance } from '../../attendance/entities/attendance.entity';
+import { Admission } from '../../admission/entities/admission.entity';
+import { AssignmentSubmission } from '../../assignment/entities/assignment.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Guardian } from '../../guardian/entities/guardian.entity';
 
+@Entity('student')
 export class Student {
   @PrimaryColumn({ type: 'varchar', length: 200 })
   student_id: string;
@@ -69,4 +74,19 @@ export class Student {
 
   @Column({ type: 'varchar', length: 1000 })
   guardian_occupation: string;
+
+  @Column({ type: 'varchar', length: 200 })
+  school_id: string;
+
+  @OneToMany(() => AssignmentSubmission, (submission) => submission.student)
+  assignmentSubmissions: AssignmentSubmission[];
+
+  @OneToMany(() => Admission, (admission) => admission.student)
+  admissions: Admission[];
+
+  @OneToMany(() => Attendance, (attendance) => attendance.student)
+  attendances: Attendance[];
+
+  @OneToMany(() => Guardian, (guardian) => guardian.student)
+  guardians: Guardian[];
 }

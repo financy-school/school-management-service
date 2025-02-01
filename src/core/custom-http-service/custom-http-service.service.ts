@@ -26,7 +26,12 @@ export class CustomHttpService {
       body: req_body,
     };
 
-    let resp;
+    let resp: {
+      status: number;
+      statusText: string;
+      headers: any;
+      data: any;
+    } = { status: 0, statusText: '', headers: {}, data: null };
     switch (method.toUpperCase()) {
       case 'GET': {
         resp = await lastValueFrom(this.http_service.get(url, config));

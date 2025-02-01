@@ -6,7 +6,7 @@ import { SendSmsNotification } from './dto/send-sms-notification';
 import { IsUrl, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
 import { ConfigService } from '@nestjs/config';
 import * as AWS from 'aws-sdk';
-import { CustomHttpService } from 'src/core/custom-http-service/custom-http-service.service';
+import { CustomHttpService } from '../../core/custom-http-service/custom-http-service.service';
 
 @Injectable()
 export class NotificationService {
@@ -28,12 +28,11 @@ export class NotificationService {
     AWS.config.region = this.config.get(`AWS_SQS_REGION`);
     this.sqs_client = new AWS.SQS();
 
-    this.email_template_service_url = this.config.get(
-      `EMAIL_TEMPLATE_SERVICE_URL`,
-    );
-    this.notification_queue_url = this.config.get(
-      `AWS_SQS_NOTIFICATION_QUEUE_URL`,
-    );
+    this.email_template_service_url =
+      this.config.get<string>(`EMAIL_TEMPLATE_SERVICE_URL`) || '';
+
+    this.notification_queue_url =
+      this.config.get<string>(`AWS_SQS_NOTIFICATION_QUEUE_URL`) || '';
 
     this.email_sending_enabled =
       this.config.get(`EMAIL_SENDING_ENABLED`) === 'true';

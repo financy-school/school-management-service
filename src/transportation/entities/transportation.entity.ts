@@ -1,5 +1,6 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
+@Entity('transportation')
 export class Transportation {
   @PrimaryColumn({ type: 'varchar', length: 200 })
   transportation_id: string;
@@ -13,6 +14,6 @@ export class Transportation {
   @Column({ type: 'varchar', length: 200 })
   driver_id: string;
 
-  @Column({ type: 'number', length: 200 })
+  @Column({ type: 'varchar', length: 200 })
   total_students: number;
 }

@@ -1,15 +1,15 @@
 import { Injectable, HttpStatus, Inject, forwardRef } from '@nestjs/common';
 import { AuthEntity } from './entities/auth.entity';
-import { NotificationService } from 'src/client/notification/notification.service';
+import { NotificationService } from '../../src/client/notification/notification.service';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import {
   JWT_ACCESS_SECRET,
   JWT_REFRESH_SECRET,
   AUTH_ID_PREFIX,
   SESSION_ID_PREFIX,
-} from 'config/config';
+} from '../../config/config';
 import { v4 as uuidv4 } from 'uuid';
 
 import { jwtDecode, JwtPayload } from 'jwt-decode';
@@ -17,19 +17,19 @@ import { CreateAuthDto } from './dto/create-auth.dto';
 import { RefreshAuthDto } from './dto/refresh-auth.dto';
 import { ResendLoginOtp } from './dto/resend-login-otp.dto';
 import { VerifyLoginOtp } from './dto/verify-login-otp.dto';
-import { SendEmailNotification } from 'src/client/notification/dto/send-email-notification.dto';
-import { SendSmsNotification } from 'src/client/notification/dto/send-sms-notification';
+import { SendEmailNotification } from '../../src/client/notification/dto/send-email-notification.dto';
+import { SendSmsNotification } from '../../src/client/notification/dto/send-sms-notification';
 
 import {
   createRandomNumber,
   maskEmail,
   maskPhoneNumber,
-} from 'src/core/helpers/commonHelper/commonHelper';
+} from '../../src/core/helpers/commonHelper/commonHelper';
 import { ConfigService } from '@nestjs/config';
 import {
   customHttpError,
   ErrorCode,
-} from 'src/core/custom-error/error-service';
+} from '../../src/core/custom-error/error-service';
 import {
   AUTH_ALREADY_VERIFIED,
   AUTH_EXPIRED_SESSION,
@@ -38,7 +38,7 @@ import {
   INVALID_TOKEN,
   NOT_FOUND,
   TOO_MANY_REQUESTS,
-} from 'src/core/custom-error/error-constant';
+} from '../../src/core/custom-error/error-constant';
 import {
   AUTH_ALREADY_VERIFIED_ERROR,
   AUTH_CREATE_ERROR,
@@ -47,7 +47,7 @@ import {
   AUTH_NOT_FOUND_ERROR,
   AUTH_TOO_MANY_REQUEST_ERROR,
 } from './error.name';
-import { CommonService } from 'src/common/common.service';
+import { CommonService } from '../../src/common/common.service';
 
 type auth_session_user = {
   org_id: string;
@@ -279,12 +279,12 @@ export class AuthService {
     return auth;
   }
 
-  async findAllByQuery(query) {
+  async findAllByQuery(query: FindManyOptions<AuthEntity>) {
     const auth = await this.auth_repository.find(query);
     return auth;
   }
 
-  async findOneByQuery(query) {
+  async findOneByQuery(query: FindOneOptions<AuthEntity>) {
     const auth = await this.auth_repository.findOne(query);
 
     if (!auth) {

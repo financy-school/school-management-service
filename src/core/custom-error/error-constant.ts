@@ -22,3 +22,8 @@ export const SCHOOL_NOT_FOUND = {
   code: '10007',
   description: 'SCHOOL_NOT_FOUND',
 };
+
+export const SCHOOL_ALREADY_EXISTS = {
+  code: '10008',
+  description: 'SCHOOL_ALREADY_EXISTS',
+};
