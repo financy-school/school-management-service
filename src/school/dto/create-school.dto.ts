@@ -1,7 +1,7 @@
 import { IsString, IsOptional, IsNotEmpty } from 'class-validator';
 export class School {
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   name: string;
 
   @IsNotEmpty()
@@ -10,7 +10,7 @@ export class School {
 
   @IsNotEmpty()
   @IsString()
-  phone: string;
+  phone?: string;
 
   @IsOptional()
   @IsString()
@@ -20,19 +20,19 @@ export class School {
   @IsString()
   website?: string;
 
-  @IsString()
+  @IsOptional()
   @IsNotEmpty()
-  registration_number: string;
+  registration_number?: string;
 
-  @IsString()
+  @IsOptional()
   @IsNotEmpty()
-  country: string;
+  country?: string;
 
-  @IsString()
+  @IsOptional()
   @IsNotEmpty()
-  state: string;
+  state?: string;
 
-  @IsString()
+  @IsOptional()
   @IsNotEmpty()
-  city: string;
+  city?: string;
 }

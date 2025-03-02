@@ -9,21 +9,21 @@ import {
 } from '@nestjs/common';
 import { SchoolUserService } from './school-user.service';
 import { SchoolUser } from './entities/school-user.entity';
+import { CreateSchoolUserDto } from './dto/create-school-user.dto';
 
-@Controller('school-users')
+@Controller('school-user')
 export class SchoolUserController {
   constructor(private readonly schoolUserService: SchoolUserService) {}
 
+  @Post('register')
+  async register(@Body() register_school_user_dto: CreateSchoolUserDto) {
+    const user = await this.schoolUserService.create(register_school_user_dto);
+    return { message: 'Registration successful', user };
+  }
+
   @Post('login')
   async login(@Body() body: { email: string; password: string }) {
-    const user = await this.schoolUserService.validateUser(
-      body.email,
-      body.password,
-    );
-    if (!user) {
-      return { message: 'Invalid credentials' };
-    }
-    return { message: 'Login successful', user };
+    return await this.schoolUserService.validateUser(body.email, body.password);
   }
 
   @Get()
@@ -34,11 +34,6 @@ export class SchoolUserController {
   @Get(':id')
   findOne(@Param('id') id: number): Promise<SchoolUser> {
     return this.schoolUserService.findOne(id);
-  }
-
-  @Post()
-  create(@Body() data: Partial<SchoolUser>): Promise<SchoolUser> {
-    return this.schoolUserService.create(data);
   }
 
   @Put(':id')

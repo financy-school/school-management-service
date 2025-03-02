@@ -14,13 +14,16 @@ export class SchoolUser {
   id: number;
 
   @Column()
-  name: string;
+  first_name: string;
+
+  @Column()
+  last_name: string;
 
   @Column({ unique: true })
   email: string;
 
   @Column()
-  phone: string;
+  phone_number: string;
 
   @Column({ nullable: true })
   address: string;
@@ -33,6 +36,10 @@ export class SchoolUser {
   })
   school: SchoolEntity;
 
+  // school_id: string
+  @Column()
+  school_id: string;
+
   @Column()
   password: string;
 
@@ -40,4 +47,7 @@ export class SchoolUser {
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
   }
+
+  @Column({ default: 'pending' })
+  onboarding_status: string;
 }

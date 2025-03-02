@@ -12,7 +12,7 @@ export class SchoolEntity {
   @Column({ type: 'varchar', length: 200 })
   name: string;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 200, default: null })
   phone: string;
 
   @Column({ type: 'varchar', length: 200, default: null })
@@ -24,16 +24,16 @@ export class SchoolEntity {
   @Column({ type: 'varchar', length: 200, default: null })
   website: string;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 200, default: null })
   country: string;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 200, default: null })
   state: string;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 200, default: null })
   city: string;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 200, default: null })
   registration_number: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
