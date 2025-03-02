@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { SchoolUser } from './entities/school-user.entity';
 import * as bcrypt from 'bcrypt';
 import { CreateSchoolUserDto } from './dto/create-school-user.dto';
-import { customHttpError } from '../../src/core/custom-error/error-service';
-import { INVALID_EMAIL_FORMAT } from '../../src/core/custom-error/error-constant';
+import { customHttpError } from '../core/custom-error/error-service';
+import { INVALID_EMAIL_FORMAT } from '../core/custom-error/error-constant';
 import { INVALID_EMAIL_FORMAT_ERROR } from './error.name';
 import { SchoolService } from '../school/school.service';
 

@@ -5,11 +5,11 @@ import { AuthEntity } from './entities/auth.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { JwtModule } from '@nestjs/jwt';
-import { NotificationModule } from '../../src/client/notification/notification.module';
+import { NotificationModule } from '../client/notification/notification.module';
 import { ConfigModule } from '@nestjs/config';
 
-import { CommonModule } from '../../src/common/common.module';
-import { SchoolModule } from '../../src/school/school.module';
+import { CommonModule } from '../common/common.module';
+import { SchoolModule } from '../school/school.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([AuthEntity]),

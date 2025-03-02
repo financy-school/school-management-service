@@ -16,12 +16,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Brackets, Repository } from 'typeorm';
 
 import { v4 as uuidv4 } from 'uuid';
-import { SCHOOL_DOCUMENT_ID_PREFIX } from '../../config/config';
+import { SCHOOL_DOCUMENT_ID_PREFIX } from '../config/config';
 import * as AWS from 'aws-sdk';
 import { classToPlain } from 'class-transformer';
 import { ConfigService } from '@nestjs/config';
 import { addQueryFilterToSqlQuery } from '../../src/core/helpers/sqlHelper/sqlHelper';
-import { customHttpError } from '../../src/core/custom-error/error-service';
+import { customHttpError } from '../core/custom-error/error-service';
 import {
   DATA_VALIDATION_ERROR,
   ORG_DOC_NOT_FOUND,
@@ -32,7 +32,7 @@ import {
   ORG_DOC_CREATE_FAILED,
   ORG_AUTH_REP_NOT_FOUND,
   ORG_NOT_FOUND,
-} from '../../src/core/custom-error/error-constant';
+} from '../core/custom-error/error-constant';
 import {
   ORG_DOC_CREATE_ERROR,
   ORG_DOC_NOT_FOUND_ERROR,
@@ -41,8 +41,8 @@ import {
   EMAIL_NOTIFICATION_ERROR,
 } from './error.name';
 
-import { SendEmailNotification } from '../../src/client/notification/dto/send-email-notification.dto';
-import { NotificationService } from '../../src/client/notification/notification.service';
+import { SendEmailNotification } from '../client/notification/dto/send-email-notification.dto';
+import { NotificationService } from '../client/notification/notification.service';
 import { CustomHttpService } from '../../src/core/custom-http-service/custom-http-service.service';
 import { SCHOOL_NOT_FOUND_ERROR } from '../../src/school/error.name';
 import { CommonService } from '../../src/common/common.service';

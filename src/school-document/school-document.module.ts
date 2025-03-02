@@ -10,12 +10,12 @@ import { SchoolDocumentEntity } from './entities/school-document.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
-import { NotificationModule } from '../../src/client/notification/notification.module';
+import { NotificationModule } from '../client/notification/notification.module';
 
-import { CustomHttpModule } from '../../src/core/custom-http-service/custom-http-service.module';
-import { CommonModule } from '../../src/common/common.module';
-import { SchoolModule } from '../../src/school/school.module';
-import { SchoolUserModule } from '../../src/school-user/school-user.module';
+import { CustomHttpModule } from '../core/custom-http-service/custom-http-service.module';
+import { CommonModule } from '../common/common.module';
+import { SchoolModule } from '../school/school.module';
+import { SchoolUserModule } from '../school-user/school-user.module';
 
 @Module({
   imports: [
